@@ -3,157 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0f172a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Prestamos Mariscal</title>
   <style>
     :root {
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #64748b;
-      --primary: #0f1f4b;
-      --lime: #b5cc18;
-      --accent: #2563eb;
-      --wa-green: #16a34a;
-      --wa-green-dark: #15803d;
-      --border: #e2e8f0;
-      --danger: #dc2626;
-      --danger-bg: #fef2f2;
+      --bg: #f1f5f9; --card: #ffffff; --text: #0f172a; --muted: #64748b;
+      --primary: #0f1f4b; --lime: #b5cc18; --wa-green: #16a34a; --wa-green-dark: #15803d;
+      --border: #e2e8f0; --danger: #dc2626; --danger-bg: #fef2f2;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 85px; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      padding-bottom: 88px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.85rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-    }
-
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-    }
-
-    .app-logo { font-size: 1.5rem; }
+    .login-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; background: var(--primary); }
+    .login-card { background: #fff; width: 100%; max-width: 400px; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .login-card h1 { font-size: 1.4rem; margin-top: 0.5rem; margin-bottom: 0.25rem; color: var(--primary); }
+    
+    .topbar { position: sticky; top: 0; z-index: 20; background: var(--primary); color: #fff; padding: 0.85rem 1rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
     .topbar h1 { font-size: 1.05rem; font-weight: 700; }
     .mode-badge { font-size: 0.72rem; color: #d9f99d; display: block; }
-
-    .fab-top {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: none;
-      background: var(--lime);
-      color: #0f172a;
-      font-size: 1.5rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    }
+    .fab-top { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--lime); color: #0f172a; font-size: 1.4rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
     .main-container { max-width: 680px; margin: 0 auto; padding: 1rem; }
-
-    .banner-quincena {
-      background: linear-gradient(135deg, #0f1f4b, #1e3a8a);
-      color: #fff;
-      padding: 1rem;
-      border-radius: 14px;
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
+    .banner-quincena { background: linear-gradient(135deg, #0f1f4b, #1e3a8a); color: #fff; padding: 1rem; border-radius: 14px; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
     .banner-quincena.banner-hoy { background: linear-gradient(135deg, #15803d, #166534); }
-    .banner-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.18);
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-      display: inline-block;
-      font-weight: 700;
-    }
+    .banner-tag { font-size: 0.7rem; text-transform: uppercase; background: rgba(255,255,255,0.18); padding: 0.2rem 0.55rem; border-radius: 6px; display: inline-block; font-weight: 700; }
     .banner-quincena h2 { font-size: 1rem; margin-top: 0.35rem; }
-
-    .banner-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.4rem;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.65rem;
-      border-radius: 10px;
-    }
+    .banner-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; background: rgba(255,255,255,0.1); padding: 0.65rem; border-radius: 10px; }
     .banner-stats small { display: block; font-size: 0.7rem; opacity: 0.85; }
-    .banner-stats strong { font-size: 0.98rem; }
+    .banner-stats strong { font-size: 0.95rem; }
 
-    .search-bar input {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-size: 0.95rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-      font-weight: 700;
-    }
+    .search-bar input { width: 100%; padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid var(--border); background: #fff; font-size: 0.95rem; margin-bottom: 0.85rem; }
+    .section-subtitle { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 0.6rem; font-weight: 700; }
 
     .card-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .cobro-card, .cliente-card, .form-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 1rem;
-      border: 1px solid var(--border);
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
-    }
-
+    .cobro-card, .cliente-card, .form-card { background: var(--card); border-radius: 14px; padding: 1rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
     .cobro-card { display: flex; flex-direction: column; gap: 0.75rem; }
     .cobro-card.cobro-atrasado { border-left: 4px solid var(--danger); }
     .cobro-card.cobro-reciente { opacity: 0.86; border-left: 4px solid var(--wa-green); }
     .cobro-info, .cliente-card { cursor: pointer; }
 
-    .cobro-header-line, .cliente-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.35rem;
-    }
-
+    .cobro-header-line, .cliente-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
     .client-name { font-weight: 700; font-size: 1.02rem; }
     .client-phone { display: block; font-size: 0.8rem; color: var(--muted); }
     .badges-right { display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
@@ -166,49 +55,15 @@
     .cobro-metrics { font-size: 0.9rem; display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.25rem; }
     .highlight-cuota { color: var(--wa-green-dark); }
     .highlight-mora { color: var(--danger); }
-
     .cobro-sub { font-size: 0.78rem; color: var(--muted); display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .text-paid { color: var(--wa-green-dark); font-weight: 600; }
 
-    .cobro-actions { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0.5rem; }
-
-    .btn-wa {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      background: var(--wa-green);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      padding: 0.65rem 0.8rem;
-      border-radius: 10px;
-    }
-
-    .btn-pay-quick {
-      background: #f1f5f9;
-      color: var(--text);
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      padding: 0.65rem;
-    }
+    .cobro-actions { display: grid; grid-template-columns: 1.35fr 1fr; gap: 0.5rem; }
+    .btn-wa { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; background: var(--wa-green); color: #fff; text-decoration: none; font-weight: 700; font-size: 0.88rem; padding: 0.65rem; border-radius: 10px; }
+    .btn-pay-quick { background: #f1f5f9; color: var(--text); border: 1px solid #cbd5e1; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer; padding: 0.65rem; }
 
     .filter-pills { display: flex; gap: 0.4rem; margin-bottom: 0.85rem; flex-wrap: wrap; }
-    .pill {
-      flex: 1;
-      min-width: 75px;
-      padding: 0.5rem 0.4rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #fff;
-      font-weight: 600;
-      font-size: 0.78rem;
-      cursor: pointer;
-    }
+    .pill { flex: 1; min-width: 75px; padding: 0.5rem; border-radius: 999px; border: 1px solid var(--border); background: #fff; font-weight: 600; font-size: 0.78rem; cursor: pointer; }
     .pill.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
     .progress-bar-bg { height: 6px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 0.55rem 0; }
@@ -219,35 +74,15 @@
     .subtitle { font-size: 0.84rem; color: var(--muted); margin-bottom: 0.75rem; }
 
     label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.75rem; }
-    input, select, textarea {
-      width: 100%;
-      margin-top: 0.3rem;
-      padding: 0.72rem;
-      border-radius: 10px;
-      border: 1px solid #cbd5e1;
-      font-size: 0.95rem;
-      background: #fff;
-    }
+    input, select, textarea { width: 100%; margin-top: 0.3rem; padding: 0.72rem; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 0.95rem; background: #fff; }
     .help-text { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 400; margin-top: 0.25rem; }
 
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-
     .row-toggle { display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; font-size: 0.85rem; font-weight: 600; flex-wrap: wrap; gap: 0.4rem; }
     .switch-inline { display: inline-flex; align-items: center; gap: 0.35rem; margin: 0; font-weight: 500; cursor: pointer; }
     .switch-inline input { width: auto; margin: 0; }
 
-    .summary-preview {
-      background: #f8fafc;
-      border: 1px dashed #94a3b8;
-      border-radius: 12px;
-      padding: 0.85rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 0.5rem;
-      text-align: center;
-      margin: 1rem 0;
-    }
+    .summary-preview { background: #f8fafc; border: 1px dashed #94a3b8; border-radius: 12px; padding: 0.85rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; text-align: center; margin: 1rem 0; }
     .summary-preview span { display: block; font-size: 0.73rem; color: var(--muted); }
     .summary-preview strong { font-size: 1.1rem; }
 
@@ -259,56 +94,18 @@
     .matrix-wrapper { overflow-x: auto; margin-top: 0.5rem; border-radius: 12px; border: 1px solid var(--border); }
     .matrix-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: center; }
     .matrix-table th { background: var(--primary); color: #fff; padding: 0.55rem 0.35rem; font-weight: 700; }
-    .matrix-table th.col-even { background: var(--lime); color: #0f172a; }
+    .matrix-table th.col-even { background: #b5cc18; color: #0f172a; }
     .matrix-table td { padding: 0.5rem 0.35rem; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-weight: 600; }
     .matrix-table td.monto-cell { font-weight: 800; background: #f8fafc; color: var(--primary); }
     .matrix-table td.empty-cell { background: #e2e8f0; color: #94a3b8; }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #fff;
-      border-top: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 0.4rem 0.25rem;
-      z-index: 30;
-    }
-    .nav-item {
-      background: none;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.15rem;
-      font-size: 0.72rem;
-      color: var(--muted);
-      padding: 0.35rem;
-      cursor: pointer;
-    }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, 1fr); padding: 0.4rem 0.25rem; z-index: 30; }
+    .nav-item { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; font-size: 0.72rem; color: var(--muted); padding: 0.35rem; cursor: pointer; }
     .nav-item.active { color: var(--primary); font-weight: 700; }
     .nav-icon { font-size: 1.2rem; }
 
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 50;
-    }
-    .modal-sheet {
-      background: #fff;
-      width: 100%;
-      max-width: 650px;
-      max-height: 92vh;
-      overflow-y: auto;
-      border-radius: 20px 20px 0 0;
-      padding: 1.25rem;
-    }
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
+    .modal-sheet { background: #fff; width: 100%; max-width: 650px; max-height: 92vh; overflow-y: auto; border-radius: 20px 20px 0 0; padding: 1.25rem; }
     .modal-header { display: flex; justify-content: space-between; align-items: flex-start; }
     .btn-close-modal { background: #f1f5f9; border: none; width: 34px; height: 34px; border-radius: 50%; font-size: 1rem; cursor: pointer; }
 
@@ -323,15 +120,40 @@
     .paid-banner { background: #dcfce7; color: #166534; padding: 0.85rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-align: center; margin-top: 0.75rem; }
 
     #toast-container { position: fixed; top: 1rem; right: 1rem; left: 1rem; max-width: 500px; margin: 0 auto; z-index: 100; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none; }
-    .toast { background: #0f172a; color: #fff; padding: 0.8rem 1rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); }
+    .toast { background: #0f172a; color: #fff; padding: 0.8rem 1rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
     .toast-error { background: var(--danger); }
   </style>
+
+  <!-- MÓDULOS DE FIREBASE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCEStpRo6Nlt8dSkpmFQEAF6R7TuGGpZFI",
+      authDomain: "prestamos-mariscal.firebaseapp.com",
+      projectId: "prestamos-mariscal",
+      storageBucket: "prestamos-mariscal.firebasestorage.app",
+      messagingSenderId: "872534518650",
+      appId: "1:872534518650:web:1c30dfa383c36529d084c3",
+      measurementId: "G-4X1EET2TVN"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.FB = { auth, db, signInWithEmailAndPassword, signOut, onAuthStateChanged, collection, addDoc, deleteDoc, doc, setDoc, onSnapshot };
+  </script>
 </head>
 <body>
   <div id="app"></div>
   <div id="toast-container" aria-live="polite"></div>
 
   <script>
+    const WHATSAPP_SVG = '<span>📲</span>';
+
     const RAW_MATRIX = [
       { monto: 1000,  cuotas: { 8: 181,  10: 155 } },
       { monto: 1500,  cuotas: { 8: 272,  10: 233 } },
@@ -355,34 +177,17 @@
     RAW_MATRIX.forEach((item) => {
       Object.entries(item.cuotas).forEach(([plazoStr, cuota]) => {
         const plazo = Number(plazoStr);
-        DEFAULT_TABULADOR.push({
-          id: `tab-${item.monto}-${plazo}`,
-          monto: item.monto,
-          plazo,
-          cuota: Number(cuota),
-          total: Number(cuota) * plazo
-        });
+        DEFAULT_TABULADOR.push({ id: `tab-${item.monto}-${plazo}`, monto: item.monto, plazo, cuota: Number(cuota), total: Number(cuota) * plazo });
       });
     });
 
     const DEFAULT_MORA_DIARIA = 50;
     const DEFAULT_WA_TEMPLATE = 'Hola {nombre}, te recuerdo que hoy es día de pago. Tu cuota quincenal es de {cuota} (Saldo pendiente: {saldo}). ¡Gracias!';
-    const DEFAULT_WA_MORA_TEMPLATE = 'Hola {nombre}, te recuerdo tu pago quincenal de {cuota}. Tienes registrado(s) {dias_atraso} día(s) de atraso (+{monto_atraso} de recargo automático), por lo que tu saldo total actualizado es de {saldo}. ¡Gracias!';
+    const DEFAULT_WA_MORA_TEMPLATE = 'Hola {nombre}, te recuerdo tu pago quincenal de {cuota}. Tienes registrado(s) {dias_atraso} día(s) de atraso (+{monto_atraso} recargo automático), por lo que tu saldo total es de {saldo}. ¡Gracias!';
 
-    function roundMoney(value) {
-      const num = Number(value);
-      if (!Number.isFinite(num)) return 0;
-      return Math.round((num + Number.EPSILON) * 100) / 100;
-    }
-
-    function formatMoney(value) {
-      const clean = roundMoney(value);
-      const isInt = Math.abs(clean - Math.round(clean)) < 0.001;
-      return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: isInt ? 0 : 2, maximumFractionDigits: 2 }).format(clean);
-    }
-
+    function roundMoney(value) { const num = Number(value); if (!Number.isFinite(num)) return 0; return Math.round((num + Number.EPSILON) * 100) / 100; }
+    function formatMoney(value) { const clean = roundMoney(value); const isInt = Math.abs(clean - Math.round(clean)) < 0.001; return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', minimumFractionDigits: isInt ? 0 : 2, maximumFractionDigits: 2 }).format(clean); }
     function phonePhoneClean(p) { return String(p || '').replace(/\D+/g, ''); }
-
     function normalizePhone(rawPhone) {
       const digits = phonePhoneClean(rawPhone);
       if (!digits) return { valid: false, phone: '', error: 'Ingresa un teléfono.' };
@@ -391,32 +196,19 @@
       return { valid: false, phone: digits, error: 'Debe tener 10 dígitos.' };
     }
 
-    function getMontosTabulador(tabulador = []) {
-      const set = new Set(tabulador.map((r) => Number(r.monto)).filter((n) => n > 0));
-      return Array.from(set).sort((a, b) => a - b);
-    }
-
-    function getPlazosPorMonto(tabulador = [], monto) {
-      const target = Number(monto);
-      const plazos = tabulador.filter((r) => Number(r.monto) === target).map((r) => Number(r.plazo)).filter((n) => n > 0);
-      return Array.from(new Set(plazos)).sort((a, b) => a - b);
-    }
-
-    function buscarFilaTabulador(tabulador = [], montoPrestado, plazoQuincenas) {
-      return tabulador.find((r) => Number(r.monto) === Number(montoPrestado) && Number(r.plazo) === Number(plazoQuincenas)) || null;
-    }
+    function getMontosTabulador(tab = []) { return Array.from(new Set(tab.map((r) => Number(r.monto)).filter((n) => n > 0))).sort((a, b) => a - b); }
+    function getPlazosPorMonto(tab = [], monto) { return Array.from(new Set(tab.filter((r) => Number(r.monto) === Number(monto)).map((r) => Number(r.plazo)).filter((n) => n > 0))).sort((a, b) => a - b); }
+    function buscarFilaTabulador(tab = [], montoPrestado, plazoQuincenas) { return tab.find((r) => Number(r.monto) === Number(montoPrestado) && Number(r.plazo) === Number(plazoQuincenas)) || null; }
 
     function calcularFueraDeTabulador(montoPrestado, plazoQuincenas, tipoFormula = '12.5_mensual') {
-      const m = roundMoney(montoPrestado);
-      const q = parseInt(plazoQuincenas, 10);
+      const m = roundMoney(montoPrestado); const q = parseInt(plazoQuincenas, 10);
       if (m <= 0 || !q || q <= 0) return { cuota: 0, total: 0, porcentajeInteres: 0 };
       let factorInteres = tipoFormula === '12.5_mensual' ? 0.0625 * q : 0.05 + 0.05 * q;
-      const totalBruto = m * (1 + factorInteres);
-      const cuotaRedondeada = Math.round(totalBruto / q);
+      const totalBruto = m * (1 + factorInteres); const cuotaRedondeada = Math.round(totalBruto / q);
       return { cuota: cuotaRedondeada, total: cuotaRedondeada * q, porcentajeInteres: Math.round(factorInteres * 1000) / 10 };
     }
 
-    function validarPrestamo(input, tabulador = [], usarLibre = false) {
+    function validarPrestamo(input, tab = [], usarLibre = false) {
       const nombre = String(input?.nombre || '').trim().replace(/\s+/g, ' ');
       if (nombre.length < 2) return { ok: false, error: 'Ingresa el nombre del cliente.' };
       const phoneCheck = normalizePhone(input?.telefono);
@@ -428,10 +220,9 @@
 
       let montoTotal = 0, cuotaQuincenal = 0;
       if (!usarLibre) {
-        const fila = buscarFilaTabulador(tabulador, montoPrestado, plazoQuincenas);
+        const fila = buscarFilaTabulador(tab, montoPrestado, plazoQuincenas);
         if (!fila) return { ok: false, error: 'Combinación no encontrada en tabulador.' };
-        cuotaQuincenal = roundMoney(fila.cuota);
-        montoTotal = roundMoney(fila.total);
+        cuotaQuincenal = roundMoney(fila.cuota); montoTotal = roundMoney(fila.total);
       } else {
         montoTotal = roundMoney(input?.montoTotalManual);
         if (!montoTotal || montoTotal < montoPrestado) return { ok: false, error: 'El total no puede ser menor al prestado.' };
@@ -513,9 +304,7 @@
       return { mensaje, url: `https://wa.me/${phoneClean}?text=${encodeURIComponent(mensaje)}`, phoneClean };
     }
 
-    function normalizeSearchText(str) {
-      return String(str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-    }
+    function normalizeSearchText(str) { return String(str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); }
 
     function filtrarPrestamos(prestamosEnriquecidos = [], { query = '', estado = 'Todos' } = {}) {
       const qNorm = normalizeSearchText(query), qDigits = phonePhoneClean(query);
@@ -535,108 +324,124 @@
       const esDiaCobro = day === 15 || day === diaFinQuincena2;
       let proximoFecha = day < 15 ? new Date(year, month, 15, 12, 0, 0) : day < diaFinQuincena2 ? new Date(year, month, diaFinQuincena2, 12, 0, 0) : new Date(year, month + 1, 15, 12, 0, 0);
       const diasFaltantes = esDiaCobro ? 0 : Math.round((new Date(proximoFecha.getFullYear(), proximoFecha.getMonth(), proximoFecha.getDate()) - new Date(year, month, day)) / (1000 * 60 * 60 * 24));
-      return { esDiaCobro, diasFaltantes, proximoISO: proximoFecha.toISOString().slice(0, 10), etiqueta: esDiaCobro ? '¡Hoy es día oficial de cobranza quincenal!' : `Próximo corte: ${proximoFecha.toISOString().slice(0, 10)} (en ${diasFaltantes} días)` };
+      return { esDiaCobro, diasFaltantes, proximoISO: proximoFecha.toISOString().slice(0, 10), etiqueta: esDiaCobro ? '¡Hoy es día oficial de cobranza!' : `Próximo corte: ${proximoFecha.toISOString().slice(0, 10)} (en ${diasFaltantes} días)` };
     }
 
-    function escapeCSVCell(val) {
-      const str = String(val ?? '');
-      return /[",\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
-    }
-
-    function generarRespaldoCSV(prestamosEnriquecidos = []) {
-      const headers = ['ID', 'Fecha Alta', 'Nombre', 'Telefono', 'Monto Prestado', 'Plazo Quincenas', 'Cuota Quincenal', 'Deuda Base', 'Dias Atraso', 'Mora ($50/dia)', 'Deuda Total', 'Abonado', 'Saldo', 'Estado', 'Ultimo Pago'];
-      const rows = prestamosEnriquecidos.map((p) => [p.id, p.fechaAlta || '', p.nombre, p.telefono, p.montoPrestado, p.plazoQuincenas, p.calc.cuotaQuincenal, p.calc.montoTotalBase, p.calc.diasAtrasoTotal, p.calc.montoAtrasoTotal, p.calc.montoTotal, p.calc.totalPagado, p.calc.saldo, p.calc.estado, p.calc.ultimoPago ? `${p.calc.ultimoPago.fecha} (${p.calc.ultimoPago.monto})` : 'Sin pagos']);
-      return `\uFEFF${[headers, ...rows].map((r) => r.map(escapeCSVCell).join(',')).join('\r\n')}`;
-    }
-
-    // =========================================================================
-    // 5. GESTOR DE DATOS 100% ROBUSTO (LOCALSTORAGE + RESPALDO)
-    // =========================================================================
-    const STORAGE_KEYS = {
-      PRESTAMOS: 'mariscal_prestamos_v1',
-      PAGOS: 'mariscal_pagos_v1',
-      CONFIG: 'mariscal_config_v1'
-    };
-
-    class DataStore {
+    // GESTOR DE DATOS EN LA NUBE (FIREBASE)
+    class CloudStore {
       constructor(onChange) {
         this.onChange = onChange;
+        this.user = null;
         this.prestamos = [];
         this.pagos = [];
         this.config = { tabulador: DEFAULT_TABULADOR, moraDiaria: DEFAULT_MORA_DIARIA, waTemplate: DEFAULT_WA_TEMPLATE, waMoraTemplate: DEFAULT_WA_MORA_TEMPLATE };
+        this.unsubscribers = [];
       }
 
-      init() {
-        try {
-          const p = localStorage.getItem(STORAGE_KEYS.PRESTAMOS);
-          const pag = localStorage.getItem(STORAGE_KEYS.PAGOS);
-          const conf = localStorage.getItem(STORAGE_KEYS.CONFIG);
+      async init() {
+        const checkFB = setInterval(() => {
+          if (window.FB) {
+            clearInterval(checkFB);
+            this._setupFirebase();
+          }
+        }, 100);
+      }
 
-          if (p) this.prestamos = JSON.parse(p);
-          if (pag) this.pagos = JSON.parse(pag);
-          if (conf) {
-            const parsed = JSON.parse(conf);
+      _setupFirebase() {
+        const { auth, onAuthStateChanged } = window.FB;
+        onAuthStateChanged(auth, (user) => {
+          this.user = user;
+          if (user) {
+            this._subscribeFirestore();
+          } else {
+            this._clearSubs();
+            this.prestamos = [];
+            this.pagos = [];
+            this.emit();
+          }
+        });
+      }
+
+      _clearSubs() { this.unsubscribers.forEach(u => u && u()); this.unsubscribers = []; }
+
+      _subscribeFirestore() {
+        this._clearSubs();
+        const { db, collection, onSnapshot, doc } = window.FB;
+
+        const unsubP = onSnapshot(collection(db, 'prestamos'), (snap) => {
+          this.prestamos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          this.emit();
+        });
+
+        const unsubPagos = onSnapshot(collection(db, 'pagos'), (snap) => {
+          this.pagos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          this.emit();
+        });
+
+        const unsubConf = onSnapshot(doc(db, 'configuracion', 'general'), (snap) => {
+          if (snap.exists()) {
+            const data = snap.data();
             this.config = {
-              tabulador: Array.isArray(parsed.tabulador) && parsed.tabulador.length ? parsed.tabulador : DEFAULT_TABULADOR,
-              moraDiaria: Number(parsed.moraDiaria) > 0 ? Number(parsed.moraDiaria) : DEFAULT_MORA_DIARIA,
-              waTemplate: parsed.waTemplate || DEFAULT_WA_TEMPLATE,
-              waMoraTemplate: parsed.waMoraTemplate || DEFAULT_WA_MORA_TEMPLATE
+              tabulador: Array.isArray(data.tabulador) && data.tabulador.length ? data.tabulador : DEFAULT_TABULADOR,
+              moraDiaria: Number(data.moraDiaria) > 0 ? Number(data.moraDiaria) : DEFAULT_MORA_DIARIA,
+              waTemplate: data.waTemplate || DEFAULT_WA_TEMPLATE,
+              waMoraTemplate: data.waMoraTemplate || DEFAULT_WA_MORA_TEMPLATE
             };
           }
-        } catch (e) {
-          console.error(e);
-        }
-        this.emit();
+          this.emit();
+        });
+
+        this.unsubscribers.push(unsubP, unsubPagos, unsubConf);
       }
 
-      save() {
-        localStorage.setItem(STORAGE_KEYS.PRESTAMOS, JSON.stringify(this.prestamos));
-        localStorage.setItem(STORAGE_KEYS.PAGOS, JSON.stringify(this.pagos));
-        localStorage.setItem(STORAGE_KEYS.CONFIG, JSON.stringify(this.config));
-        this.emit();
+      emit() { if (typeof this.onChange === 'function') this.onChange(); }
+
+      async login(email, password) {
+        const { signInWithEmailAndPassword, auth } = window.FB;
+        await signInWithEmailAndPassword(auth, email, password);
       }
 
-      emit() {
-        if (typeof this.onChange === 'function') this.onChange();
+      async logout() {
+        const { signOut, auth } = window.FB;
+        await signOut(auth);
       }
 
-      crearPrestamo(data) {
-        const nuevo = { id: `p-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, ...data, fechaAlta: new Date().toISOString().slice(0, 10), creadoEn: Date.now() };
-        this.prestamos.unshift(nuevo);
-        this.save();
+      async crearPrestamo(data) {
+        const nuevo = { ...data, fechaAlta: new Date().toISOString().slice(0, 10), creadoEn: Date.now() };
+        const { db, collection, addDoc } = window.FB;
+        await addDoc(collection(db, 'prestamos'), nuevo);
       }
 
-      eliminarPrestamo(prestamoId) {
-        this.prestamos = this.prestamos.filter(p => p.id !== prestamoId);
-        this.pagos = this.pagos.filter(p => p.prestamoId !== prestamoId);
-        this.save();
+      async eliminarPrestamo(prestamoId) {
+        const { db, doc, deleteDoc } = window.FB;
+        const asociad = this.pagos.filter(p => p.prestamoId === prestamoId);
+        for (const p of asociad) { await deleteDoc(doc(db, 'pagos', p.id)); }
+        await deleteDoc(doc(db, 'prestamos', prestamoId));
       }
 
-      registrarPago({ prestamoId, monto, fecha, nota = '' }) {
-        const nuevoPago = { id: `pay-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, prestamoId, monto: roundMoney(monto), fecha: fecha || new Date().toISOString().slice(0, 10), nota: String(nota || '').trim(), creadoEn: Date.now() };
-        this.pagos.unshift(nuevoPago);
-        this.save();
+      async registrarPago({ prestamoId, monto, fecha, nota = '' }) {
+        const nuevoPago = { prestamoId, monto: roundMoney(monto), fecha: fecha || new Date().toISOString().slice(0, 10), nota: String(nota || '').trim(), creadoEn: Date.now() };
+        const { db, collection, addDoc } = window.FB;
+        await addDoc(collection(db, 'pagos'), nuevoPago);
       }
 
-      eliminarPago(pagoId) {
-        this.pagos = this.pagos.filter(p => p.id !== pagoId);
-        this.save();
+      async eliminarPago(pagoId) {
+        const { db, doc, deleteDoc } = window.FB;
+        await deleteDoc(doc(db, 'pagos', pagoId));
       }
 
-      guardarConfiguracion(nuevaConfig) {
+      async guardarConfiguracion(nuevaConfig) {
         this.config = { ...this.config, ...nuevaConfig };
-        this.save();
+        const { db, doc, setDoc } = window.FB;
+        await setDoc(doc(db, 'configuracion', 'general'), this.config, { merge: true });
+        this.emit();
       }
     }
 
-    const store = new DataStore(() => render());
+    const store = new CloudStore(() => render());
 
     const state = {
-      activeTab: 'cobranza',
-      searchQuery: '',
-      filterEstado: 'Todos',
-      cobranzaSearch: '',
-      selectedPrestamoId: null,
+      activeTab: 'cobranza', searchQuery: '', filterEstado: 'Todos', cobranzaSearch: '', selectedPrestamoId: null,
       form: { nombre: '', telefono: '', usarMontoLibre: false, formulaLibre: '12.5_mensual', montoPrestado: '2000', plazoQuincenas: '8', montoTotalManual: '2904' }
     };
 
@@ -655,6 +460,23 @@
       });
     }
 
+    function renderLogin() {
+      return `
+        <div class="login-wrapper">
+          <div class="login-card">
+            <div class="banner-tag">Acceso Nube Seguro</div>
+            <h1>Prestamos Mariscal</h1>
+            <p class="subtitle" style="margin-bottom:1.25rem;">Inicia sesión con tu cuenta de administrador de Firebase.</p>
+            <form id="login-form">
+              <label>Correo electrónico<input type="email" name="email" required placeholder="admin@mariscal.com" /></label>
+              <label>Contraseña<input type="password" name="password" required placeholder="••••••••" /></label>
+              <button type="submit" class="btn btn-primary btn-block" style="margin-top:0.5rem;">Entrar al Sistema</button>
+            </form>
+          </div>
+        </div>
+      `;
+    }
+
     function renderCobranzaView(enriquecidos) {
       const infoCobro = getInfoDiaCobro();
       const activos = filtrarPrestamos(enriquecidos, { query: state.cobranzaSearch, estado: 'Activo' });
@@ -669,14 +491,14 @@
             <div class="cobro-header-line">
               <span class="client-name">${escapeHTML(item.nombre)}</span>
               <div class="badges-right">
-                ${item.calc.diasAtrasoTotal > 0 ? `<span class="atraso-pill">⚠️ ${item.calc.diasAtrasoTotal}d atraso (+${formatMoney(item.calc.montoAtrasoTotal)})</span>` : ''}
+                ${item.calc.diasAtrasoTotal > 0 ? `<span class="atraso-pill">⚠️ ${item.calc.diasAtrasoTotal}d (+${formatMoney(item.calc.montoAtrasoTotal)})</span>` : ''}
                 <span class="status-pill status-activo">Activo</span>
               </div>
             </div>
             <div class="cobro-metrics">
               <span>Cuota: <strong class="highlight-cuota">${formatMoney(item.calc.montoSugerido)}</strong></span>
               <span>•</span>
-              <span>Saldo Total: <strong>${formatMoney(item.calc.saldo)}</strong></span>
+              <span>Saldo: <strong>${formatMoney(item.calc.saldo)}</strong></span>
             </div>
             <div class="cobro-sub">
               <span>📱 +${escapeHTML(item.telefono)}</span>
@@ -685,9 +507,7 @@
             </div>
           </div>
           <div class="cobro-actions">
-            <a href="${escapeHTML(item.wa.url)}" target="_blank" rel="noopener noreferrer" class="btn-wa">
-              <span>📲 WhatsApp</span>
-            </a>
+            <a href="${escapeHTML(item.wa.url)}" target="_blank" rel="noopener noreferrer" class="btn-wa">${WHATSAPP_SVG}<span>WhatsApp</span></a>
             <button type="button" class="btn-pay-quick" data-quick-pay="${escapeHTML(item.id)}">✓ Abonar</button>
           </div>
         </div>
@@ -696,25 +516,17 @@
       return `
         <section>
           <div class="banner-quincena ${infoCobro.esDiaCobro ? 'banner-hoy' : ''}">
-            <div>
-              <span class="banner-tag">COBRANZA DÍAS 15 Y 30</span>
-              <h2>${escapeHTML(infoCobro.etiqueta)}</h2>
-            </div>
+            <div><span class="banner-tag">COBRANZA DÍAS 15 Y 30</span><h2>${escapeHTML(infoCobro.etiqueta)}</h2></div>
             <div class="banner-stats">
-              <div><small>Por cobrar</small><strong>${pendientes.length} activos</strong></div>
-              <div><small>Quincena est.</small><strong>${formatMoney(totalPorCobrar)}</strong></div>
-              <div><small>Recargos mora</small><strong>+${formatMoney(totalMora)}</strong></div>
+              <div><small>Cobrar</small><strong>${pendientes.length} act.</strong></div>
+              <div><small>Quincena</small><strong>${formatMoney(totalPorCobrar)}</strong></div>
+              <div><small>Mora</small><strong>+${formatMoney(totalMora)}</strong></div>
             </div>
           </div>
-
-          <div class="search-bar">
-            <input type="search" id="cobranza-search" placeholder="Buscar deudor activo..." value="${escapeHTML(state.cobranzaSearch)}" />
-          </div>
-
-          <h3 class="section-subtitle">Pendientes en esta quincena (${pendientes.length})</h3>
-          ${pendientes.length === 0 ? `<div class="empty-box">No hay clientes activos pendientes.</div>` : `<div class="card-list">${pendientes.map(renderCard).join('')}</div>`}
-
-          ${recientes.length > 0 ? `<h3 class="section-subtitle" style="margin-top:1.5rem;">Activos con abono reciente (${recientes.length})</h3><div class="card-list">${recientes.map(renderCard).join('')}</div>` : ''}
+          <div class="search-bar"><input type="search" id="cobranza-search" placeholder="Buscar deudor activo..." value="${escapeHTML(state.cobranzaSearch)}" /></div>
+          <h3 class="section-subtitle">Pendientes (${pendientes.length})</h3>
+          ${pendientes.length === 0 ? `<div class="empty-box">No hay clientes pendientes.</div>` : `<div class="card-list">${pendientes.map(renderCard).join('')}</div>`}
+          ${recientes.length > 0 ? `<h3 class="section-subtitle" style="margin-top:1.5rem;">Pagados recientemente (${recientes.length})</h3><div class="card-list">${recientes.map(renderCard).join('')}</div>` : ''}
         </section>
       `;
     }
@@ -728,32 +540,20 @@
       return `
         <section>
           <div class="clientes-header">
-            <div>
-              <h2>Lista de Clientes (${enriquecidos.length})</h2>
-              <p class="subtitle" style="margin:0;">Control de Préstamos y Estados</p>
-            </div>
-            <button type="button" class="btn btn-outline-sm" id="btn-export-csv">⬇ Excel (CSV)</button>
+            <div><h2>Clientes (${enriquecidos.length})</h2><p class="subtitle" style="margin:0;">Control en Nube</p></div>
           </div>
-
-          <div class="search-bar">
-            <input type="search" id="clientes-search" placeholder="Buscar cliente por nombre o teléfono..." value="${escapeHTML(state.searchQuery)}" />
-          </div>
-
+          <div class="search-bar"><input type="search" id="clientes-search" placeholder="Buscar por nombre o teléfono..." value="${escapeHTML(state.searchQuery)}" /></div>
           <div class="filter-pills">
-            <button type="button" class="pill ${state.filterEstado === 'Todos' ? 'active' : ''}" data-filter="Todos">Todos (${enriquecidos.length})</button>
-            <button type="button" class="pill ${state.filterEstado === 'Activo' ? 'active' : ''}" data-filter="Activo">Activos (${totalActivos})</button>
-            <button type="button" class="pill ${state.filterEstado === 'ConAtraso' ? 'active' : ''}" data-filter="ConAtraso">⚠️ Atraso (${totalConAtraso})</button>
-            <button type="button" class="pill ${state.filterEstado === 'Inactivo' ? 'active' : ''}" data-filter="Inactivo">Inactivos (${totalInactivos})</button>
+            <button type="button" class="pill ${state.filterEstado === 'Todos' ? 'active' : ''}" data-filter="Todos">Todos</button>
+            <button type="button" class="pill ${state.filterEstado === 'Activo' ? 'active' : ''}" data-filter="Activo">Activos</button>
+            <button type="button" class="pill ${state.filterEstado === 'ConAtraso' ? 'active' : ''}" data-filter="ConAtraso">⚠️ Atraso</button>
+            <button type="button" class="pill ${state.filterEstado === 'Inactivo' ? 'active' : ''}" data-filter="Inactivo">Inactivos</button>
           </div>
-
-          ${filtrados.length === 0 ? `<div class="empty-box">No se encontraron clientes.</div>` : `<div class="card-list">
+          ${filtrados.length === 0 ? `<div class="empty-box">Sin resultados.</div>` : `<div class="card-list">
             ${filtrados.map((item) => `
               <div class="cliente-card" data-open-detail="${escapeHTML(item.id)}">
                 <div class="cliente-top">
-                  <div>
-                    <span class="client-name">${escapeHTML(item.nombre)}</span>
-                    <span class="client-phone">📱 +${escapeHTML(item.telefono)}</span>
-                  </div>
+                  <div><span class="client-name">${escapeHTML(item.nombre)}</span><span class="client-phone">📱 +${escapeHTML(item.telefono)}</span></div>
                   <div class="badges-right">
                     ${item.calc.diasAtrasoTotal > 0 ? `<span class="atraso-pill">⚠️ ${item.calc.diasAtrasoTotal}d (+${formatMoney(item.calc.montoAtrasoTotal)})</span>` : ''}
                     <span class="status-pill ${item.calc.estado === 'Activo' ? 'status-activo' : 'status-inactivo'}">${item.calc.estado}</span>
@@ -762,7 +562,7 @@
                 <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: ${item.calc.porcentajePagado}%"></div></div>
                 <div class="cliente-bottom">
                   <span>Prestado: <strong>${formatMoney(item.montoPrestado)}</strong></span>
-                  <span>Pagado: <strong>${formatMoney(item.calc.totalPagado)}</strong> / ${formatMoney(item.calc.montoTotal)}</span>
+                  <span>Pagado: <strong>${formatMoney(item.calc.totalPagado)}</strong></span>
                   <span>Saldo: <strong>${formatMoney(item.calc.saldo)}</strong></span>
                 </div>
               </div>
@@ -773,74 +573,53 @@
     }
 
     function renderRegistroView() {
-      const tabulador = store.config.tabulador || [];
-      const montos = getMontosTabulador(tabulador);
-      const plazos = getPlazosPorMonto(tabulador, state.form.montoPrestado);
+      const tab = store.config.tabulador || [];
+      const montos = getMontosTabulador(tab);
+      const plazos = getPlazosPorMonto(tab, state.form.montoPrestado);
 
       let totalEfectivo = 0, cuotaCalculada = 0, detalleFormula = '';
       if (!state.form.usarMontoLibre) {
-        const fila = buscarFilaTabulador(tabulador, state.form.montoPrestado, state.form.plazoQuincenas);
-        if (fila) { cuotaCalculada = fila.cuota; totalEfectivo = fila.total; detalleFormula = `Tabulador Oficial (${state.form.plazoQuincenas} pagos de ${formatMoney(cuotaCalculada)})`; }
+        const fila = buscarFilaTabulador(tab, state.form.montoPrestado, state.form.plazoQuincenas);
+        if (fila) { cuotaCalculada = fila.cuota; totalEfectivo = fila.total; detalleFormula = `Tabulador Oficial (${state.form.plazoQuincenas}Q de ${formatMoney(cuotaCalculada)})`; }
       } else {
         const calcAuto = calcularFueraDeTabulador(state.form.montoPrestado, state.form.plazoQuincenas, state.form.formulaLibre);
         totalEfectivo = roundMoney(state.form.montoTotalManual) || calcAuto.total;
         cuotaCalculada = roundMoney(totalEfectivo / parseInt(state.form.plazoQuincenas || 1, 10));
-        detalleFormula = `Cálculo libre (${calcAuto.porcentajeInteres}% int.)`;
+        detalleFormula = `Cálculo libre (${calcAuto.porcentajeInteres}% int. aprox)`;
       }
 
       return `
         <section>
           <div class="form-card">
             <h2>Nuevo Préstamo</h2>
-            <p class="subtitle">Tabulador Oficial ($1,000 a $13,000) o tasa libre al 12.5% mensual.</p>
+            <p class="subtitle">Tabulador Oficial o Tasa Libre (12.5% mensual)</p>
             <form id="registro-form">
-              <label>1. Nombre completo
-                <input type="text" name="nombre" required placeholder="Ej. Juan Pérez" value="${escapeHTML(state.form.nombre)}" />
-              </label>
-              <label>2. Teléfono (WhatsApp)
-                <input type="tel" name="telefono" required placeholder="6621234567" value="${escapeHTML(state.form.telefono)}" />
-                <small class="help-text">Se agrega 521 automáticamente si pones 10 dígitos.</small>
-              </label>
+              <label>Nombre completo<input type="text" name="nombre" required placeholder="Ej. Carlos Mendoza" value="${escapeHTML(state.form.nombre)}" /></label>
+              <label>Teléfono (10 dígitos)<input type="tel" name="telefono" required placeholder="6621234567" value="${escapeHTML(state.form.telefono)}" />
+              <small class="help-text">Se antepondrá 521 automáticamente para WhatsApp.</small></label>
+
               <div class="row-toggle">
-                <span>3. Monto y Plazo</span>
-                <label class="switch-inline">
-                  <input type="checkbox" id="toggle-monto-libre" ${state.form.usarMontoLibre ? 'checked' : ''} />
-                  <span>Fuera de tabulador (12.5% mensual)</span>
-                </label>
+                <span>Monto y Plazo</span>
+                <label class="switch-inline"><input type="checkbox" id="toggle-monto-libre" ${state.form.usarMontoLibre ? 'checked' : ''} /><span>Fuera de tabulador</span></label>
               </div>
 
               ${!state.form.usarMontoLibre ? `
                 <div class="grid-2">
-                  <label>Monto de Préstamo
-                    <select name="montoPrestado" id="select-monto">
-                      ${montos.map(m => `<option value="${m}" ${Number(state.form.montoPrestado) === m ? 'selected' : ''}>${formatMoney(m)}</option>`).join('')}
-                    </select>
-                  </label>
-                  <label>Plazo Quincenal
-                    <select name="plazoQuincenas" id="select-plazo">
-                      ${plazos.map(p => `<option value="${p}" ${Number(state.form.plazoQuincenas) === p ? 'selected' : ''}>${p} Quincenas</option>`).join('')}
-                    </select>
-                  </label>
+                  <label>Monto Préstamo<select name="montoPrestado" id="select-monto">${montos.map(m => `<option value="${m}" ${Number(state.form.montoPrestado) === m ? 'selected' : ''}>${formatMoney(m)}</option>` ).join('')}</select></label>
+                  <label>Plazo Quincenas<select name="plazoQuincenas" id="select-plazo">${plazos.map(p => `<option value="${p}" ${Number(state.form.plazoQuincenas) === p ? 'selected' : ''}>${p} Quincenas</option>` ).join('')}</select></label>
                 </div>
               ` : `
-                <label>Fórmula
-                  <select id="select-formula-libre">
-                    <option value="12.5_mensual">12.5% mensual (50% en 4 meses / 8Q)</option>
-                    <option value="tabulador">Fórmula Tabulador (10% mensual + 5%)</option>
-                  </select>
-                </label>
-                <div class="grid-2">
-                  <label>Monto prestado ($)<input type="number" name="montoPrestado" id="input-monto-libre" value="${escapeHTML(state.form.montoPrestado)}" /></label>
-                  <label>Plazo (quincenas)<input type="number" name="plazoQuincenas" id="input-plazo-libre" value="${escapeHTML(state.form.plazoQuincenas)}" /></label>
-                </div>
-                <label>Total a Pagar ($)<input type="number" step="0.01" name="montoTotalManual" id="input-total-manual" value="${escapeHTML(state.form.montoTotalManual)}" /></label>
+                <label>Fórmula</label><select id="select-formula-libre"><option value="12.5_mensual">12.5% mensual (50% en 4 meses / 8Q)</option><option value="tabulador">Fórmula Tabulador (10% mensual + 5%)</option></select>
+                <div class="grid-2" style="margin-top:0.5rem;"><label>Monto ($)<input type="number" name="montoPrestado" id="input-monto-libre" value="${escapeHTML(state.form.montoPrestado)}" /></label><label>Quincenas<input type="number" name="plazoQuincenas" id="input-plazo-libre" value="${escapeHTML(state.form.plazoQuincenas)}" /></label></div>
+                <label>Total a Pagar ($)</label><input type="number" step="0.01" name="montoTotalManual" id="input-total-manual" value="${escapeHTML(state.form.montoTotalManual)}" />
               `}
 
               <div class="summary-preview">
-                <div><span>Pago Quincenal</span><strong class="highlight-cuota">${formatMoney(cuotaCalculada)}</strong></div>
+                <div><span>Cuota Quincenal</span><strong class="highlight-cuota">${formatMoney(cuotaCalculada)}</strong></div>
                 <div><span>Total a Pagar</span><strong>${formatMoney(totalEfectivo)}</strong></div>
               </div>
-              <button type="submit" class="btn btn-primary btn-block">+ Guardar Cliente</button>
+              <small class="help-text" style="text-align:center; margin-bottom:0.75rem;">${escapeHTML(detalleFormula)}</small>
+              <button type="submit" class="btn btn-primary btn-block">+ Guardar en Firebase</button>
             </form>
           </div>
         </section>
@@ -854,7 +633,7 @@
       return `
         <section>
           <div class="form-card">
-            <h2>Tabulador y Ajustes</h2>
+            <h2>Ajustes y Nube</h2>
             <div class="matrix-wrapper">
               <table class="matrix-table">
                 <thead><tr><th>MONTO</th><th class="col-even">8Q</th><th>10Q</th><th class="col-even">12Q</th><th>14Q</th><th class="col-even">16Q</th></tr></thead>
@@ -867,8 +646,10 @@
             <h3>Configuración de Mora</h3>
             <div class="grid-2" style="align-items:end; margin-top:0.5rem;">
               <label style="margin:0;">Cargo por día atrasado ($)<input type="number" id="input-mora-diaria" value="${store.config.moraDiaria}" /></label>
-              <button type="button" id="btn-save-mora" class="btn btn-primary">Guardar Cargo</button>
+              <button type="button" id="btn-save-mora" class="btn btn-primary" style="margin:0;">Guardar</button>
             </div>
+            <hr class="divider" />
+            <div style="text-align: right;"><button type="button" class="btn-danger-text" id="btn-logout">Cerrar Sesión de Nube</button></div>
           </div>
         </section>
       `;
@@ -889,7 +670,7 @@
                   ${item.calc.diasAtrasoTotal > 0 ? `<span class="atraso-pill">⚠️ ${item.calc.diasAtrasoTotal}d atraso (+${formatMoney(item.calc.montoAtrasoTotal)})</span>` : ''}
                 </div>
                 <h3 style="margin-top:0.35rem;">${escapeHTML(item.nombre)}</h3>
-                <p class="subtitle" style="margin:0;">📱 +${escapeHTML(item.telefono)} • Préstamo: ${formatMoney(item.montoPrestado)} (${item.plazoQuincenas}Q)</p>
+                <p class="subtitle" style="margin:0;">📱 +${escapeHTML(item.telefono)} • Prestado: ${formatMoney(item.montoPrestado)} (${item.plazoQuincenas}Q)</p>
               </div>
               <button type="button" class="btn-close-modal" id="btn-close-modal">✕</button>
             </div>
@@ -901,26 +682,24 @@
               <div><span>Saldo</span><strong class="highlight-cuota">${formatMoney(item.calc.saldo)}</strong></div>
             </div>
 
-            <a href="${escapeHTML(item.wa.url)}" target="_blank" rel="noopener noreferrer" class="btn-wa" style="width:100%;"><span>📲 Enviar WhatsApp</span></a>
+            <a href="${escapeHTML(item.wa.url)}" target="_blank" rel="noopener noreferrer" class="btn-wa" style="width:100%; margin-bottom:0.75rem;">${WHATSAPP_SVG}<span>Enviar WhatsApp</span></a>
 
             ${item.calc.saldo > 0 ? `
-              <form id="modal-pay-form" class="pay-box" style="margin-top:0.85rem;">
+              <form id="modal-pay-form" class="pay-box">
                 <h4 style="margin-bottom:0.5rem;">✓ Registrar Abono</h4>
                 <div class="grid-2">
                   <label>Monto ($)<input type="number" step="0.01" name="monto" required value="${item.calc.montoSugerido}" /></label>
                   <label>Fecha<input type="date" name="fecha" required value="${new Date().toISOString().slice(0, 10)}" /></label>
                 </div>
                 <label>Nota<input type="text" name="nota" placeholder="Ej. Quincena 15" /></label>
-                <button type="submit" class="btn btn-primary btn-block">Guardar Abono</button>
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:0.3rem;">Guardar Abono en Nube</button>
               </form>
             ` : `<div class="paid-banner">🎉 Préstamo liquidado al 100%.</div>`}
 
             <h4 style="margin-top:1.1rem;">Historial de Abonos (${item.pagos.length})</h4>
             ${item.pagos.length === 0 ? `<p class="help-text">Sin abonos.</p>` : `<ul class="pagos-list">${item.pagos.map(pay => `<li><div><strong>${formatMoney(pay.monto)}</strong> • ${escapeHTML(pay.fecha)}</div><button type="button" class="btn-icon-del" data-del-pago="${escapeHTML(pay.id)}">🗑</button></li>`).join('')}</ul>`}
 
-            <div style="margin-top: 1.4rem; text-align: right;">
-              <button type="button" class="btn-danger-text" id="btn-delete-prestamo">Eliminar cliente</button>
-            </div>
+            <div style="margin-top: 1.4rem; text-align: right;"><button type="button" class="btn-danger-text" id="btn-delete-prestamo">Eliminar cliente</button></div>
           </div>
         </div>
       `;
@@ -930,18 +709,30 @@
       const root = document.getElementById('app');
       if (!root) return;
 
+      if (!store.user) {
+        root.innerHTML = renderLogin();
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+          loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fd = new FormData(loginForm);
+            try {
+              await store.login(fd.get('email'), fd.get('password'));
+              showToast('Sesión iniciada correctamente.');
+            } catch (err) {
+              showToast('Error: verifica tu correo y contraseña.', 'error');
+            }
+          });
+        }
+        return;
+      }
+
       const enriquecidos = getPrestamosEnriquecidos();
       const activosCount = enriquecidos.filter((p) => p.calc.estado === 'Activo').length;
 
       root.innerHTML = `
         <header class="topbar">
-          <div class="topbar-left">
-            <span class="app-logo">💳</span>
-            <div>
-              <h1>Prestamos Mariscal</h1>
-              <span class="mode-badge">⚡ Sistema Local Activo</span>
-            </div>
-          </div>
+          <h1>💳 Prestamos Mariscal</h1>
           <button type="button" class="fab-top" data-tab="registro" title="Nuevo Cliente">+</button>
         </header>
 
@@ -965,6 +756,8 @@
       bindEvents(enriquecidos);
     }
 
+    function escapeHTML(str) { return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
     function bindEvents(enriquecidos) {
       document.querySelectorAll('[data-tab]').forEach((btn) => {
         btn.addEventListener('click', () => { state.activeTab = btn.getAttribute('data-tab'); render(); });
@@ -973,138 +766,94 @@
       const cobSearch = document.getElementById('cobranza-search');
       if (cobSearch) {
         cobSearch.addEventListener('input', (e) => {
-          state.cobranzaSearch = e.target.value;
-          const pos = e.target.selectionStart;
-          render();
-          const el = document.getElementById('cobranza-search');
-          if (el) { el.focus(); el.setSelectionRange(pos, pos); }
+          state.cobranzaSearch = e.target.value; const pos = e.target.selectionStart; render();
+          const el = document.getElementById('cobranza-search'); if (el) { el.focus(); el.setSelectionRange(pos, pos); }
         });
       }
 
       const cliSearch = document.getElementById('clientes-search');
       if (cliSearch) {
         cliSearch.addEventListener('input', (e) => {
-          state.searchQuery = e.target.value;
-          const pos = e.target.selectionStart;
-          render();
-          const el = document.getElementById('clientes-search');
-          if (el) { el.focus(); el.setSelectionRange(pos, pos); }
+          state.searchQuery = e.target.value; const pos = e.target.selectionStart; render();
+          const el = document.getElementById('clientes-search'); if (el) { el.focus(); el.setSelectionRange(pos, pos); }
         });
       }
 
-      document.querySelectorAll('[data-filter]').forEach((btn) => {
-        btn.addEventListener('click', () => { state.filterEstado = btn.getAttribute('data-filter'); render(); });
-      });
+      document.querySelectorAll('[data-filter]').forEach((btn) => { btn.addEventListener('click', () => { state.filterEstado = btn.getAttribute('data-filter'); render(); }); });
 
-      const btnCSV = document.getElementById('btn-export-csv');
-      if (btnCSV) {
-        btnCSV.addEventListener('click', () => {
-          const csv = generarRespaldoCSV(enriquecidos);
-          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `respaldo-prestamos-${new Date().toISOString().slice(0, 10)}.csv`;
-          a.click();
-          URL.revokeObjectURL(url);
-          showToast('Reporte Excel descargado.');
-        });
-      }
+      const btnLogout = document.getElementById('btn-logout');
+      if (btnLogout) { btnLogout.addEventListener('click', async () => { await store.logout(); showToast('Sesión cerrada.'); }); }
 
       document.querySelectorAll('[data-quick-pay]').forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const id = btn.getAttribute('data-quick-pay');
-          const item = enriquecidos.find((p) => p.id === id);
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation(); const id = btn.getAttribute('data-quick-pay'); const item = enriquecidos.find((p) => p.id === id);
           if (!item) return;
-          store.registrarPago({ prestamoId: item.id, monto: item.calc.montoSugerido, fecha: new Date().toISOString().slice(0, 10), nota: 'Abono quincenal' });
-          showToast(`Abono de ${formatMoney(item.calc.montoSugerido)} registrado.`);
+          await store.registrarPago({ prestamoId: item.id, monto: item.calc.montoSugerido, fecha: new Date().toISOString().slice(0, 10), nota: 'Abono quincenal' });
+          showToast(`Abono de ${formatMoney(item.calc.montoSugerido)} guardado en Nube.`);
         });
       });
 
-      document.querySelectorAll('[data-open-detail]').forEach((el) => {
-        el.addEventListener('click', () => { state.selectedPrestamoId = el.getAttribute('data-open-detail'); render(); });
-      });
+      document.querySelectorAll('[data-open-detail]').forEach((el) => { el.addEventListener('click', () => { state.selectedPrestamoId = el.getAttribute('data-open-detail'); render(); }); });
 
-      const closeBtn = document.getElementById('btn-close-modal');
-      const backdrop = document.getElementById('modal-backdrop');
+      const closeBtn = document.getElementById('btn-close-modal'); const backdrop = document.getElementById('modal-backdrop');
       if (closeBtn) closeBtn.addEventListener('click', () => { state.selectedPrestamoId = null; render(); });
-      if (backdrop) {
-        backdrop.addEventListener('click', (e) => { if (e.target.id === 'modal-backdrop') { state.selectedPrestamoId = null; render(); } });
-      }
+      if (backdrop) backdrop.addEventListener('click', (e) => { if (e.target.id === 'modal-backdrop') { state.selectedPrestamoId = null; render(); } });
 
       const modalPayForm = document.getElementById('modal-pay-form');
       if (modalPayForm) {
-        modalPayForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const fd = new FormData(modalPayForm);
-          store.registrarPago({ prestamoId: state.selectedPrestamoId, monto: fd.get('monto'), fecha: fd.get('fecha'), nota: fd.get('nota') });
-          showToast('Abono guardado.');
+        modalPayForm.addEventListener('submit', async (e) => {
+          e.preventDefault(); const fd = new FormData(modalPayForm);
+          await store.registrarPago({ prestamoId: state.selectedPrestamoId, monto: fd.get('monto'), fecha: fd.get('fecha'), nota: fd.get('nota') });
+          showToast('Abono guardado en Firebase.');
         });
       }
 
       document.querySelectorAll('[data-del-pago]').forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
           if (!window.confirm('¿Borrar este abono?')) return;
-          store.eliminarPago(btn.getAttribute('data-del-pago'));
-          showToast('Abono eliminado.');
+          await store.eliminarPago(btn.getAttribute('data-del-pago')); showToast('Abono eliminado.');
         });
       });
 
       const btnDelPrestamo = document.getElementById('btn-delete-prestamo');
       if (btnDelPrestamo) {
-        btnDelPrestamo.addEventListener('click', () => {
-          if (!window.confirm('¿Eliminar este cliente?')) return;
-          const id = state.selectedPrestamoId;
-          state.selectedPrestamoId = null;
-          store.eliminarPrestamo(id);
-          showToast('Cliente eliminado.');
+        btnDelPrestamo.addEventListener('click', async () => {
+          if (!window.confirm('¿Eliminar este cliente de Firebase?')) return;
+          const id = state.selectedPrestamoId; state.selectedPrestamoId = null;
+          await store.eliminarPrestamo(id); showToast('Cliente eliminado de Nube.');
         });
       }
 
       const regForm = document.getElementById('registro-form');
       if (regForm) {
         const toggleLibre = document.getElementById('toggle-monto-libre');
-        if (toggleLibre) {
-          toggleLibre.addEventListener('change', (e) => {
-            state.form.usarMontoLibre = e.target.checked;
-            render();
-          });
-        }
+        if (toggleLibre) toggleLibre.addEventListener('change', (e) => { state.form.usarMontoLibre = e.target.checked; render(); });
 
         const selectMonto = document.getElementById('select-monto');
         if (selectMonto) {
           selectMonto.addEventListener('change', (e) => {
-            state.form.montoPrestado = e.target.value;
-            const plazos = getPlazosPorMonto(store.config.tabulador, e.target.value);
-            if (!plazos.includes(Number(state.form.plazoQuincenas))) state.form.plazoQuincenas = String(plazos[0] || 8);
-            render();
+            state.form.montoPrestado = e.target.value; const plazos = getPlazosPorMonto(store.config.tabulador, e.target.value);
+            if (!plazos.includes(Number(state.form.plazoQuincenas))) state.form.plazoQuincenas = String(plazos[0] || 8); render();
           });
         }
 
         const selectPlazo = document.getElementById('select-plazo');
-        if (selectPlazo) {
-          selectPlazo.addEventListener('change', (e) => { state.form.plazoQuincenas = e.target.value; render(); });
-        }
+        if (selectPlazo) selectPlazo.addEventListener('change', (e) => { state.form.plazoQuincenas = e.target.value; render(); });
 
-        regForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const fd = new FormData(regForm);
+        regForm.addEventListener('submit', async (e) => {
+          e.preventDefault(); const fd = new FormData(regForm);
           const res = validarPrestamo({ nombre: fd.get('nombre'), telefono: fd.get('telefono'), montoPrestado: fd.get('montoPrestado'), plazoQuincenas: fd.get('plazoQuincenas'), montoTotalManual: fd.get('montoTotalManual') }, store.config.tabulador, state.form.usarMontoLibre);
           if (!res.ok) return showToast(res.error, 'error');
 
-          store.crearPrestamo(res.data);
-          state.activeTab = 'cobranza';
-          showToast(`Cliente ${res.data.nombre} guardado.`);
+          await store.crearPrestamo(res.data); state.activeTab = 'cobranza'; showToast(`Cliente guardado en Nube.`);
         });
       }
 
       const btnSaveMora = document.getElementById('btn-save-mora');
       if (btnSaveMora) {
-        btnSaveMora.addEventListener('click', () => {
+        btnSaveMora.addEventListener('click', async () => {
           const val = roundMoney(document.getElementById('input-mora-diaria')?.value || 50);
-          store.guardarConfiguracion({ moraDiaria: val });
-          showToast('Cargo actualizado.');
+          await store.guardarConfiguracion({ moraDiaria: val }); showToast('Cargo actualizado en Firebase.');
         });
       }
     }
@@ -1112,13 +861,11 @@
     function showToast(msg, type = 'success') {
       const container = document.getElementById('toast-container');
       if (!container) return;
-      const toast = document.createElement('div');
-      toast.className = `toast toast-${type}`;
-      toast.textContent = msg;
-      container.appendChild(toast);
+      const toast = document.createElement('div'); toast.className = `toast toast-${type}`; toast.textContent = msg; container.appendChild(toast);
       setTimeout(() => toast.remove(), 3200);
     }
 
+    const store = new CloudStore(() => render());
     store.init();
   </script>
 </body>
